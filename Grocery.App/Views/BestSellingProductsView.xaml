@@ -29,10 +29,12 @@
                         <ColumnDefinition Width="0.5*"/>
                         <ColumnDefinition Width="2*"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" Text="Id" FontAttributes="Bold"/>
                     <Label Grid.Column="1" Text="Product" FontAttributes="Bold"/>
                     <Label Grid.Column="2" Text="Aantal verkocht" FontAttributes="Bold"/>
+                    <Label Grid.Column="3" Text="Op voorraad" FontAttributes="Bold"/>
                 </Grid>
             </CollectionView.Header>
 
@@ -44,10 +46,12 @@
                             <ColumnDefinition Width="0.5*"/>
                             <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Text="{Binding Id}" />
+                        <Label Grid.Column="0" Text="{Binding Ranking}" />
                         <Label Grid.Column="1" Text="{Binding Name}" />
                         <Label Grid.Column="2" Text="{Binding NrOfSells}" />
+                        <Label Grid.Column="3" Text="{Binding Stock}"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
