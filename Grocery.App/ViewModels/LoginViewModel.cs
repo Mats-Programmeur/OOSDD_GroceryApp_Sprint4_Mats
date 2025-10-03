@@ -6,10 +6,10 @@ using Grocery.Core.Models;
 
 namespace Grocery.App.ViewModels
 {
-    public partial class LoginViewModel : BaseViewModel
+    public partial class LoginViewModel(IAuthService authService, GlobalViewModel global) : BaseViewModel
     {
-        private readonly IAuthService _authService;
-        private readonly GlobalViewModel _global;
+        private readonly IAuthService _authService = authService;
+        private readonly GlobalViewModel _global = global;
 
         [ObservableProperty]
         private string email = "user3@mail.com";
@@ -18,13 +18,7 @@ namespace Grocery.App.ViewModels
         private string password = "user3";
 
         [ObservableProperty]
-        private string loginMessage;
-
-        public LoginViewModel(IAuthService authService, GlobalViewModel global)
-        { //_authService = App.Services.GetServices<IAuthService>().FirstOrDefault();
-            _authService = authService;
-            _global = global;
-        }
+        private string? loginMessage;
 
         [RelayCommand]
         private void Login()
@@ -34,7 +28,15 @@ namespace Grocery.App.ViewModels
             {
                 LoginMessage = $"Welkom {authenticatedClient.Name}!";
                 _global.Client = authenticatedClient;
-                Application.Current.MainPage = new AppShell();
+                if (Application.Current != null)
+                {
+                    Application.Current.MainPage = new AppShell();
+                }
+                else
+                {
+                    // Optionally handle the case where Application.Current is null
+                    // For example, log an error or throw an exception
+                }
             }
             else
             {
