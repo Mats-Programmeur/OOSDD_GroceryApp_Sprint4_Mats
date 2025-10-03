@@ -9,5 +9,9 @@ namespace Grocery.Core.Interfaces.Services
         public Client? Get(int id);
 
         public List<Client> GetAll();
+        
+        Client? CurrentClient { get; set; }
+        Client? SetCurrentClient(Client client);
+        void ClearCurrentClient();
     }
 }
