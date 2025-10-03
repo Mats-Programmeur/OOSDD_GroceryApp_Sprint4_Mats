@@ -19,7 +19,7 @@ namespace Grocery.App.ViewModels
         public ObservableCollection<BoughtProducts> BoughtProductsList { get; set; } = [];
         public ObservableCollection<Product> Products { get; set; } = new(productService.GetAll());
 
-        partial void OnSelectedProductChanged(Product? oldValue, Product newValue)
+        partial void OnSelectedProductChanged(Product? oldValue, Product? newValue)
         {
             BoughtProductsList.Clear();
             if (newValue == null) return;
