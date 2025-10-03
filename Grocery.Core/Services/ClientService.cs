@@ -12,6 +12,15 @@ namespace Grocery.Core.Services
     public class ClientService : IClientService
     {
         private readonly IClientRepository _clientRepository;
+
+        // Backing field for CurrentClient
+        private Client? _currentClient;
+        public Client? CurrentClient
+        {
+            get => _currentClient;
+            set => _currentClient = value;
+        }
+
         public ClientService(IClientRepository clientRepository)
         {
             _clientRepository = clientRepository;
@@ -31,6 +40,17 @@ namespace Grocery.Core.Services
         {
             List<Client> clients = _clientRepository.GetAll();
             return clients;
+        }
+
+        public Client? SetCurrentClient(Client client)
+        {
+            _currentClient = client;
+            return _currentClient;
+        }
+
+        public void ClearCurrentClient()
+        {
+            _currentClient = null;
         }
     }
 }

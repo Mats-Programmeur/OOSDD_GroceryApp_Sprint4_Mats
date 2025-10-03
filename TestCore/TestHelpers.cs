@@ -36,9 +36,12 @@ namespace TestCore
 
         [TestCase("user1", "IunRhDKa+fWo8+4/Qfj7Pg==.kDxZnUQHCZun6gLIE6d9oeULLRIuRmxmH2QKJv2IM08")]
         [TestCase("user3", "sxnIcZdYt8wC8MYWcQVQjQ==.FKd5Z/jwxPv3a63lX+uvQ0+P7EuNYZybvkmdhbnkIHA")]
-        public void TestPasswordHelperReturnsFalse(string password, string passwordHash)
+        public void TestPasswordHelperThrowsOnInvalidBase64(string password, string passwordHash)
         {
-            Assert.Fail(); //Zelf uitwerken zodat de test slaagt!
+            Assert.Throws<FormatException>(() =>
+            {
+                PasswordHelper.VerifyPassword(password, passwordHash);
+            });
         }
     }
 }
